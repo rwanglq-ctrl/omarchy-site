@@ -73,6 +73,12 @@
 
 <p>For Spotify, you can use <code>Ctrl + Minus</code> to shrink the UI (and <code>Ctrl + Plus</code> to make it bigger).</p>
 
+<h3 id="why-did-all-my-super-key-binds-stop-working">Why did all my Super key binds stop working? <a class="manual__heading-link" href="#why-did-all-my-super-key-binds-stop-working" aria-label="Link to this section">#</a></h3>
+
+<p>On some ASUS ROG and TUF laptops, <code>Fn + Super</code> is an easy-to-miss chord that toggles a firmware Windows-key lock (meant for gaming so you don’t leave a game by accident). Nothing on screen tells you it happened. While the lock is on, Super emits nothing at all — so every Omarchy bind that uses Super just stops, and it looks like Hyprland broke.</p>
+
+<p>Press <code>Fn + Super</code> once before you dig into <code>~/.config/hypr/</code>, and if that doesn’t bring Super back, press it again so you don’t leave the lock on. This is not Fn-lock, which only changes what the F-key row does.</p>
+
 <h3 id="my-wi-fi-bluetooth-audio-or-trackpad-just-stopped-working">My Wi-Fi, Bluetooth, audio, or trackpad just stopped working <a class="manual__heading-link" href="#my-wi-fi-bluetooth-audio-or-trackpad-just-stopped-working" aria-label="Link to this section">#</a></h3>
 
 <p>Before you reboot, try restarting the offending subsystem on its own. <em>Update &gt; Hardware</em> in the Omarchy menu has Wi-Fi, Bluetooth, Audio, and Trackpad, and reloading one of those clears up the majority of “it worked five minutes ago” situations — a Bluetooth headset that won’t reconnect, a trackpad that went dead after a suspend, sound that vanished when you unplugged a monitor.</p>
