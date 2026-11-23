@@ -75,7 +75,7 @@
 
 <h2 id="changing-your-passwords">Changing your passwords <a class="manual__heading-link" href="#changing-your-passwords" aria-label="Link to this section">#</a></h2>
 
-<p>You have two passwords on an encrypted install: the one that unlocks the drive at boot, and the one you log in and <code>sudo</code> with. Setup makes them the same. Both can be changed under <em>Update &gt; Password</em> in the Omarchy menu — <em>Drive Encryption</em> for the first, <em>User</em> for the second. Changing the drive password asks for the current one first, so have it handy. If a change is interrupted, run <em>Drive Encryption</em> again: it asks for the password that unlocks the drive now and finishes the change.</p>
+<p>You have two passwords on an encrypted install: the one that unlocks the drive at boot, and the one you log in and <code>sudo</code> with. Setup makes them the same. <em>Update &gt; Password</em> in the Omarchy menu changes both at once, so they stay the same: it asks for the current drive password, then the new one, changes the drive’s and then sets your login password to match. Without drive encryption it changes just your login password. If a change is interrupted, run <em>Update &gt; Password</em> again: it asks for the password that unlocks the drive now, finishes the change, and sets your login password to it. To change the password of another encrypted drive, run <code>omarchy-drive-password</code> in a terminal.</p>
 
 <h2 id="passing-on-a-machine-youve-already-used">Passing on a machine you’ve already used <a class="manual__heading-link" href="#passing-on-a-machine-youve-already-used" aria-label="Link to this section">#</a></h2>
 
