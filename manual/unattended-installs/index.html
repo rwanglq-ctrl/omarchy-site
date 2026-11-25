@@ -88,7 +88,7 @@
     <tr>
       <td><code>user_credentials.json</code></td>
       <td>Yes</td>
-      <td>Username and password hash</td>
+      <td>Username and password hash, and the LUKS passphrase for an encrypted install</td>
     </tr>
     <tr>
       <td><code>user_encrypt_installation.txt</code></td>
@@ -148,7 +148,7 @@ qm start 101
 
 <h2 id="two-caveats">Two caveats <a class="manual__heading-link" href="#two-caveats" aria-label="Link to this section">#</a></h2>
 
-<p>Encrypted unattended installs aren’t fully unattended — someone still has to type the LUKS passphrase at the first boot. And the <code>disk_encryption</code> block in <code>user_configuration.json</code> carries that passphrase in plaintext, so treat a cidata drive built from an encrypted install as the secret it is.</p>
+<p>Encrypted unattended installs aren’t fully unattended — someone still has to type the LUKS passphrase at the first boot. And that passphrase goes at the top level of <code>user_credentials.json</code> as <code>encryption_password</code> — archinstall reads it there, not from the <code>disk_encryption</code> block in <code>user_configuration.json</code> — so treat a cidata drive built from an encrypted install as the secret it is.</p>
 
     </article>
   </div>
