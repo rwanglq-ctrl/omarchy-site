@@ -65,6 +65,24 @@
       <h1>System snapshots</h1>
 <p>We create snapshots automatically on every Omarchy update, but should you want to create your own, you can use <code>omarchy-snapshot create</code>.</p>
 
+<p>How you boot and restore a snapshot depends on the boot loader your machine starts with. New UEFI installs use systemd-boot; older installs and BIOS machines use Limine. <code>omarchy-boot-backend</code> tells you which one you have.</p>
+
+<h2 id="with-systemd-boot">With systemd-boot <a class="manual__heading-link" href="#with-systemd-boot" aria-label="Link to this section">#</a></h2>
+
+<p>Pick <em>System &gt; Snapshots</em> in the Omarchy menu and choose the snapshot you’d like to boot into. The machine restarts into it once. Or hold Space while the machine starts to see the boot menu, where every snapshot is listed newest first with its Omarchy version and date.</p>
+
+<p>A snapshot boots with a temporary layer on top, so you can use it as normal, but anything you change is gone at the next reboot. To keep it, make it your system: click the notification that appears when you log in, pick <em>System &gt; Snapshots &gt; Restore This Snapshot</em>, or run <code>omarchy-snapshot restore</code>. The restore happens while the machine restarts. The system as it was before stays in the boot menu as <em>Before restore</em>, and <code>omarchy-snapshot restore backup</code> puts it back.</p>
+
+<p>From the terminal:</p>
+
+<ul>
+  <li><code>omarchy-snapshot list</code> lists the snapshots you can boot;</li>
+  <li><code>omarchy-snapshot boot 12</code> restarts into snapshot 12 once;</li>
+  <li><code>omarchy-snapshot restore 12</code> makes snapshot 12 the system at the next restart, and <code>omarchy-snapshot restore --cancel</code> changes your mind before that restart.</li>
+</ul>
+
+<h2 id="with-limine">With Limine <a class="manual__heading-link" href="#with-limine" aria-label="Link to this section">#</a></h2>
+
 <p>To boot and restore a snapshot, you select it from the Limine boot loader. The boot menu stays hidden by default, so press any key as soon as Limine starts to bring it up.</p>
 
 <p>From that screen, choose the snapshot you’d like to boot into based on the date and version. The version of Omarchy at the time of the snapshot can be seen at the bottom left corner.</p>
@@ -75,13 +93,13 @@
 
 <p><img src="/manual/images/snapshots-restore.webp" alt="snapshots-restore" /></p>
 
-<p>This will restore your root filesystem, but not your <code>/home</code>. So it works for reverting a broken system update, but not for recovering lost personal files.</p>
+<h2 id="what-a-restore-covers">What a restore covers <a class="manual__heading-link" href="#what-a-restore-covers" aria-label="Link to this section">#</a></h2>
+
+<p>A restore brings back your root filesystem, but not your <code>/home</code>. So it works for reverting a broken system update, but not for recovering lost personal files.</p>
 
 <p>This also means that your <code>~/.config</code> directory is kept as-is. So if you’re rolling back to an earlier version of a library or application that stores configuration files in a new format, you’ll have to sort that out manually.</p>
 
 <p>The same goes for Omarchy’s own record of which migrations have already run: it lives in your home directory, so it survives the restore. Migrations that ran after the snapshot was taken stay marked as done, even though the changes they made to the root filesystem have been rolled back, and the next <code>omarchy update</code> won’t run them again. So if you update again after a restore and something an earlier update had set up is still missing, that’s the likely reason.</p>
-
-<p><em>Note: This feature is only available on installations using the Limine boot loader, which has been the default since Omarchy 2.0. It’s not available if you’re on GRUB or systemd-boot.</em></p>
 
     </article>
   </div>
